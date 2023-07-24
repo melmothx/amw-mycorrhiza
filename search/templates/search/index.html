@@ -36,7 +36,7 @@ Search: {{ querystring }}
     <div class="col-8">
       {% if matches  %}
       {% for res in matches %}
-      <div>
+      <div class="mb-3">
         <span>
           <a href="{{ res.url }}"><strong>
             {% if res.creator %}
@@ -55,6 +55,7 @@ Search: {{ querystring }}
         <p>
           {{ res.description }}
         </p>
+        <small><code>{{ res.oai_pmh_identifier }}</code></small>
       </div>
       {% endfor %}
       {% else %}

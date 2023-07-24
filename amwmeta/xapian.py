@@ -102,13 +102,16 @@ def search(query_params):
         rec = {}
         for field in fields:
             values = fields.get(field)
-            if values and field == "identifier":
-                urls = [ i for i in values if re.match(r'^https?://', i) ]
-                if len(urls):
-                    rec['url'] = urls[0]
-                rec['identifiers'] = values
             if values:
-                rec[field] = ' | '.join(values)
+                if field == "identifier":
+                    urls = [ i for i in values if re.match(r'^https?://', i) ]
+                    if len(urls):
+                        rec['url'] = urls[0]
+                        rec['identifiers'] = values
+                elif field == "oai_pmh_identifier":
+                    rec[field] = values
+                else:
+                    rec[field] = ' | '.join(values)
 
         logger.info(rec)
         matches.append(rec)
@@ -456,6 +459,7 @@ def harvest(**opts):
                 for v in values:
                     termgenerator.index_text(v)
 
+        record['oai_pmh_identifier'] = identifier
         doc.set_data(json.dumps(record))
         idterm = u"Q" + identifier
         doc.add_boolean_term(idterm)
