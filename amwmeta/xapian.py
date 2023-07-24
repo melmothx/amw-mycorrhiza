@@ -156,9 +156,13 @@ class MarcXMLRecord(Record):
             # for now consider 720a the authors, including contributors
             # ('contributor', '720',  'a'),
             ('coverage', '500',  ('a')),
+            ('creator', '100',  ('a')),
             ('creator', '720',  ('a')),
             ('date', '260',  ('c')),
             ('date', '363', ('i')), # normalized date
+            ('date', '264', ('c')),
+            ('description', '300', ('a', 'b', 'c', 'e')),
+            ('description', '500', ('a')),
             ('description', '520',  ('a')),
             ('format', '856',  ('q')),
             ('identifier', '024',  ('a')),
