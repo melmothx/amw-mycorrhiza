@@ -38,13 +38,20 @@ Search: {{ querystring }}
       {% for res in matches %}
       <div>
         <span>
-          <a href="{{ res.identifier }}"><strong>
+          <a href="{{ res.url }}"><strong>
             {% if res.creator %}
             {{ res.creator }}  —
             {% endif %}
             {{ res.title }}</strong></a>
           <small>[{{ res.language }}]</small>
         </span>
+        <ul>
+          {% for identifier in res.identifiers %}
+          <li>{{ identifier }}</li>
+          {% endfor %}
+        </ul>
+        <p>
+        </p>
         <p>
           {{ res.description }}
         </p>

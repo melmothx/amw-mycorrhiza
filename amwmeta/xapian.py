@@ -8,6 +8,7 @@ from pathlib import Path
 import logging
 from amwmeta.utils import DataPage
 from sickle.models import Record
+import re
 
 logger = logging.getLogger(__name__)
 
@@ -101,6 +102,11 @@ def search(query_params):
         rec = {}
         for field in fields:
             values = fields.get(field)
+            if values and field == "identifier":
+                urls = [ i for i in values if re.match(r'^https?://', i) ]
+                if len(urls):
+                    rec['url'] = urls[0]
+                rec['identifiers'] = values
             if values:
                 rec[field] = ' | '.join(values)
 
@@ -142,7 +148,6 @@ def search(query_params):
 
 class MarcXMLRecord(Record):
     def get_metadata(self):
-        # print(etree.tostring(node, pretty_print=True))
         ns = { None: 'http://www.loc.gov/MARC21/slim' }
         specs = [
             # for now consider 720a the authors, including contributors
