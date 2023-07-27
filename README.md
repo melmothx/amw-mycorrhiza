@@ -62,3 +62,4 @@ DATABASES = {
 ```
 
 
+Questo fatto nella cartella di sviluppo
