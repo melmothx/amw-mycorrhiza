@@ -8,8 +8,8 @@ Search: {{ querystring }}
 <form action="{% url 'index' %}">
   <div class="row mt-3 mb-3 g-3" id="search-facets">
     <div class="col-12 input-group mb-3">
-      <input class="form-control" type="text" name="query" value="{% if querystring %}{{ querystring }}{% endif %}" placeholder="Search">
-      <button class="btn btn-primary" type="submit">{{ _("Search") }}</button>
+      <input class="form-control" type="text" name="query" value="{% if querystring %}{{ querystring }}{% endif %}" placeholder="Cerca quello che ti pare">
+      <button class="btn btn-primary" type="submit">{{ _("Cerca") }}</button>
     </div>
   </div>
   <div class="row" id="search-results">
