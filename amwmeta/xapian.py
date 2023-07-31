@@ -68,8 +68,9 @@ def search(query_params):
             for value in query_params.getlist('filter_' + field):
                 filter_value = FIELD_MAPPING[field][1] + value.lower();
                 logger.info("Filter value is " + filter_value)
-                filters_ors.append(xapian.Query(filter_value))
-                active_facets[field].append(value)
+                if filter_value:
+                    filters_ors.append(xapian.Query(filter_value))
+                    active_facets[field].append(value)
             if len(filters_ors):
                 filter_queries.append(xapian.Query(xapian.Query.OP_OR, filters_ors))
 
