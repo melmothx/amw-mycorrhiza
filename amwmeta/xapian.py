@@ -109,10 +109,8 @@ def search(query_params):
                     if len(urls):
                         rec['url'] = urls[0]
                         rec['identifiers'] = values
-                elif field == "oai_pmh_identifier":
-                    rec[field] = values
                 else:
-                    rec[field] = ' | '.join(values)
+                    rec[field] = values
 
         logger.info(rec)
         matches.append(rec)
